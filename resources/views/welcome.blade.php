@@ -42,6 +42,9 @@
             <div class="content">
                 <div class="title">ServerForXiaomin</div>
                 {{--<div class="quote">{{ Inspiring::quote() }}</div>--}}
+                <div class="quote">
+                    <a href="{{ url('minions') }}">旋转小黄人</a>
+                </div>
             </div>
         </div>
     </body>
