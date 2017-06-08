@@ -44,7 +44,7 @@
                 {{--<div class="quote">{{ Inspiring::quote() }}</div>--}}
                 <div class="quote">
                     <a href="{{ url('minions') }}">旋转小黄人</a>
-                    <a href="{{ url('articles') }}">简陋的文章值列表</a>
+                    <a href="{{ url('articles') }}">简陋的文章列表</a>
                     <a href="{{ url('articles/create') }}">简陋的撰写文章</a>
                 </div>
             </div>

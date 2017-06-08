@@ -17,8 +17,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-//        $articles = Article::latest()->published()->get();
+        $articles = Article::latest()->published()->get();
         return view('articles.index',compact('articles'));
     }
 
@@ -38,9 +37,11 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+//    public function store(Request $request)
+    public function store(Requests\CreateArticleRequest $request)
     {
-        $this->validate($request,['title'=>'required','content'=>'required']);
+//        $this->validate($request,['title'=>'required','content'=>'required']);
+
         Article::create($request->all());
         return redirect('/articles');
     }
@@ -60,7 +61,8 @@ class ArticlesController extends Controller
 //        }
 //        dd($article->created_at->diffForHumans());
 //        dd($article->published_at->diffForHumans());
-        return view('articles.show',compact('article'));
+        $published_at = $article->published_at->diffForHumans();
+        return view('articles.show',compact('article','published_at'));
     }
 
     /**

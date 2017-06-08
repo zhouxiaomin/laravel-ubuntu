@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <h1>Articles</h1>
+    <h1>文章列表</h1>
         <a href="{{ url('articles/create') }}" class="btn btn-primary btn-xs">简陋的撰写文章</a>
     <hr>
     @foreach($articles as $article)
