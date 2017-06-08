@@ -6,6 +6,7 @@
     @foreach($articles as $article)
         {{--<h2><a href="/articles/{{ $article->id }}">{{ $article->title }}</a></h2>--}}
         <h2><a href="{{ url('articles', $article->id) }}">{{ $article->title }}</a></h2>
+        <h4><a href="{{ url('articles/'.$article->id.'/edit') }}">修改</a></h4>
 {{--        <h2><a href="{{ action('ArticleController@show',[$article->id]) }}">{{ $article->title }}</a></h2>--}}
         <article>
             <div class="body">
