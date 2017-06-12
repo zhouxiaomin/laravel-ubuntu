@@ -282,7 +282,7 @@
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></small> 
+						<small class="block">Copyright &copy; 2017.Company name All rights reserved.</small>
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
