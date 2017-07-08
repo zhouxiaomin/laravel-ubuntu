@@ -1,5 +1,6 @@
 <?php
 
+//Auth::loginUsingId(2);
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,6 +15,11 @@
 Route::get('/', function () {
 //    return view('welcome');
     return view('template.blackexplore.index');
+});
+
+Route::get('/task', function () {
+    $tasks = \App\Task::latest()->get();
+   return view('task.list', compact('tasks'));
 });
 
 Route::get('/services', function () {
