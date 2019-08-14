@@ -14,10 +14,12 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
+//            $table->integer('user_id')->unsigned();//无符号
             $table->string('title');
             $table->text('content');
             $table->timestamp('published_at');
             $table->timestamps();
+//            $table->foreign('user_id')->references('id')->on('users');//外键为users tab id. 只能用这个表里的id
         });
     }
 

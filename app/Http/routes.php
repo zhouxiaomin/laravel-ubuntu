@@ -18,9 +18,17 @@ Route::get('/', function () {
 });
 
 Route::get('/task', function () {
+
     $tasks = \App\Task::latest()->get();
-   return view('task.list', compact('tasks'));
+//   dd($tasks);
+    return view('task.list', compact('tasks'));
 });
+
+//Route::get('api/tasks',function (){
+//    return \App\Task::latest()->get();
+//});
+
+Route::resource('api/tasks','TaskController');
 
 Route::get('/services', function () {
     return view('template.blackexplore.services');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
-
+use App\Tag;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -29,7 +29,14 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        if (isset(\Auth::user()->id)) {
+            $tags = Tag::lists('name', 'id');
+            //为了在界面中显示标签name，id为了在保存文章的时候使用。
+            return view('articles.create',compact('tags'));
+//            return view('articles.create');
+        } else {
+            return redirect('/auth/login');
+        }
     }
 
     /**
@@ -41,9 +48,16 @@ class ArticlesController extends Controller
 //    public function store(Request $request)
     public function store(Requests\CreateArticleRequest $request)
     {
+//        dd($request->all());
 //        $this->validate($request,['title'=>'required','content'=>'required']);
+//        dd(\Auth::user()->id);
+//        Article::create(array_merge(['user_id'=>\Auth::user()->id], $request->all()));
+//        return redirect('/articles');
 
-        Article::create($request->all());
+        $input = $request->all();
+        $input['intro'] = mb_substr($request->get('content'),0,64);
+        $article = Article::create(array_merge(['user_id'=>\Auth::user()->id], $input));
+        $article->tags()->attach($request->input('tag_list'));
         return redirect('/articles');
     }
 
@@ -74,8 +88,13 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::findOrFail($id);
-        return view('articles.edit',compact('article'));
+        if (isset(\Auth::user()->id)) {
+            $article = Article::findOrFail($id);
+            return view('articles.edit',compact('article'));
+        } else {
+            return redirect('/auth/login');
+        }
+
     }
 
     /**
